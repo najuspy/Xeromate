@@ -1,113 +1,195 @@
+"use client";
 import Image from "next/image";
+import PageTitle from '@/components/PageTitle'
+import Card, { CardContent, CardProps } from "@/components/Card";
+import BarChart from "@/components/ui/BarChar"
+import SalesCard, { SalesProps } from "@/components/ui/SalesCard";
+import { CompanyProps } from '@/components/ui/BarChar'
+import { useEffect, useState } from "react";
+import {sortCompanyData} from "@/lib/sortData"
+
+const cardData: CardProps[] = [
+  {
+    label: "Total Bank Balance",
+    amount: "$45,321,456.89",
+    description: "+20.1% from last month",
+  },
+  {
+    label: "Total Sales",
+    amount: "$12,350,432.98",
+    description: "+10.1% from last month",
+
+  },
+  {
+    label: "Gross Profit",
+    amount: "$3,67,453.66",
+    description: "+19% from last month",
+  },
+  {
+    label: "Net Profit",
+    amount: "+$573,456.12",
+    description: "+10.2% from last month ",
+
+  },
+  {
+    label: "ATO Integrated Account",
+    amount: "$245,673.44",
+    description: "-5.2% from last month ",
+
+  },
+  {
+    label: "GST",
+    amount: "$57,345.61",
+    description: "+32.12% from last month ",
+
+  },
+  {
+    label: "Accounts Receivable",
+    amount: "$200,113.50",
+    description: "+3.4% from last month ",
+
+  },
+  {
+    label: "Accounts Payable",
+    amount: "$105,503.66",
+    description: "-0.3% from last month ",
+
+  },
+]
+
+const userSalesData: SalesProps[] = [
+  {
+    name: "Olivia Martin",
+    email: "olivia.martin@email.com",
+    saleAmount: "+$1,999.00"
+  },
+  {
+    name: "Jackson Lee",
+    email: "isabella.nguyen@email.com",
+    saleAmount: "+$1,999.00"
+  },
+  {
+    name: "Isabella Nguyen",
+    email: "isabella.nguyen@email.com",
+    saleAmount: "+$39.00"
+  },
+  {
+    name: "William Kim",
+    email: "will@email.com",
+    saleAmount: "+$299.00"
+  },
+  {
+    name: "Sofia Davis",
+    email: "sofia.davis@email.com",
+    saleAmount: "+$39.00"
+  }
+];
+const companyData = [
+  {
+    name: 'Qantum Eight',
+    BankAccounts: 782500,
+    Income: 523000,
+    GrossProfit: 221000,
+    NetProfit: 90000,
+    ATOIntegratedAccount: 55000,
+    GST: 54000,
+    AccountsReceivable: 120000,
+    AccountsPayable: 85000
+  },
+  {
+    name: 'Adam Hansford',
+    BankAccounts: 720000,
+    Income: 475000,
+    GrossProfit: 182000,
+    NetProfit: 75000,
+    ATOIntegratedAccount: 45000,
+    GST: 69000,
+    AccountsReceivable: 110000,
+    AccountsPayable: 92000
+  },
+  {
+    name: 'Piccolo Trattoria',
+    BankAccounts: 560000,
+    Income: 490000,
+    GrossProfit: 210000,
+    NetProfit: 82000,
+    ATOIntegratedAccount: 48000,
+    GST: 42000,
+    AccountsReceivable: 105000,
+    AccountsPayable: 97000
+  },
+  {
+    name: 'PMJ Developments',
+    BankAccounts: 530000,
+    Income: 510000,
+    GrossProfit: 190000,
+    NetProfit: 88000,
+    ATOIntegratedAccount: 52000,
+    GST: 80000,
+    AccountsReceivable: 95000,
+    AccountsPayable: 87000
+  },
+  {
+    name: 'LU 88 Investments',
+    BankAccounts: 490000,
+    Income: 480000,
+    GrossProfit: 195000,
+    NetProfit: 92000,
+    ATOIntegratedAccount: 87000,
+    GST: 56000,
+    AccountsReceivable: 98000,
+    AccountsPayable: 93000
+  }
+];
+
+
 
 export default function Home() {
+
+  const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCompanyIndex((prevIndex) => (prevIndex + 1) % companyData.length);
+    }, 5000); // Change company every 20 seconds
+
+    return () => clearInterval(interval);
+  }, [companyData.length]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <div className="flex flex-col gap-5 w-full">
+      <PageTitle title="Dashboard" />
+      <section className="grid w-full grid-cols-1gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
+        {cardData.map((d, i) => (
+          <Card
+            key={i}
+            amount={d.amount}
+            description={d.description}
+            label={d.label}
+          />
+        ))}
+      </section>
+      <section className="grid drig-cols-1 gap-4 transition-all lg:grid-cols-2">
+        <CardContent>
+          <p className="p-4 font-semibold"> {companyData[currentCompanyIndex].name}</p>
+          <BarChart data={companyData[currentCompanyIndex]} />
+        </CardContent>
+        <CardContent className="flex justify-between gap-4" >
+          <section>
+            <p>Top 5 </p>
+            <p className="text-sm text-gray-400">
+              Total Balance
+            </p>
+          </section>
+          {sortCompanyData(companyData, "BankAccounts").map((d, i) => (
+            <SalesCard key={i}
+             name={d.name}
+             metric={d.metric}
             />
-          </a>
-        </div>
-      </div>
+          ))}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        </CardContent>
+      </section>
+    </div>
   );
 }
