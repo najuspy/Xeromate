@@ -125,7 +125,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCompanyIndex((prevIndex) => (prevIndex + 1) % companyData.length);
-    }, 5000); // Change company every 20 seconds
+    }, 99999999); // Change company every 20 seconds
 
     return () => clearInterval(interval);
   }, [companyData.length]);
