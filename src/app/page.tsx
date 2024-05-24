@@ -11,47 +11,47 @@ import {sortCompanyData} from "@/lib/sortData"
 const cardData: CardProps[] = [
   {
     label: "Total Bank Balance",
-    amount: "$45,321,456.89",
+    amount: "$528,512.15",
     description: "+20.1% from last month",
   },
   {
     label: "Total Sales",
-    amount: "$12,350,432.98",
+    amount: "$3,049,742.35",
     description: "+10.1% from last month",
 
   },
   {
     label: "Gross Profit",
-    amount: "$3,67,453.66",
+    amount: "$916,014.49",
     description: "+19% from last month",
   },
   {
     label: "Net Profit",
-    amount: "+$573,456.12",
+    amount: "+481,952.49",
     description: "+10.2% from last month ",
 
   },
   {
     label: "ATO Integrated Account",
-    amount: "$245,673.44",
+    amount: "$11138.00",
     description: "-5.2% from last month ",
 
   },
   {
     label: "GST",
-    amount: "$57,345.61",
+    amount: "$382,477.36",
     description: "+32.12% from last month ",
 
   },
   {
     label: "Accounts Receivable",
-    amount: "$200,113.50",
+    amount: "$3,151.50",
     description: "+3.4% from last month ",
 
   },
   {
     label: "Accounts Payable",
-    amount: "$105,503.66",
+    amount: "$310",
     description: "-0.3% from last month ",
 
   },
@@ -61,58 +61,58 @@ const cardData: CardProps[] = [
 const companyData = [
   {
     name: 'Qantum Eight',
-    BankAccounts: 782500,
-    Income: 523000,
-    GrossProfit: 221000,
-    NetProfit: 90000,
-    ATOIntegratedAccount: 55000,
-    GST: 54000,
-    AccountsReceivable: 120000,
-    AccountsPayable: 85000
+    BankAccounts: 1720.84,
+    Income: 3915,
+    GrossProfit: 3915,
+    NetProfit: 3654.78,
+    ATOIntegratedAccount: 0,
+    GST: 749.19,
+    AccountsReceivable: 3151.50,
+    AccountsPayable: 0
   },
   {
     name: 'Adam Hansford',
-    BankAccounts: 720000,
-    Income: 475000,
-    GrossProfit: 182000,
-    NetProfit: 75000,
-    ATOIntegratedAccount: 45000,
-    GST: 69000,
-    AccountsReceivable: 110000,
-    AccountsPayable: 92000
+    BankAccounts: 20914.51,
+    Income: 12576.71,
+    GrossProfit: 12104.84,
+    NetProfit: 2217.09,
+    ATOIntegratedAccount: 11138.00,
+    GST: 2063.49,
+    AccountsReceivable: 0,
+    AccountsPayable: 0
   },
   {
     name: 'Piccolo Trattoria',
-    BankAccounts: 560000,
-    Income: 490000,
-    GrossProfit: 210000,
-    NetProfit: 82000,
-    ATOIntegratedAccount: 48000,
-    GST: 42000,
-    AccountsReceivable: 105000,
-    AccountsPayable: 97000
+    BankAccounts: 76614.40,
+    Income: 133250.64,
+    GrossProfit: 99177.18,
+    NetProfit: 16753.50,
+    ATOIntegratedAccount: 0,
+    GST: 0,
+    AccountsReceivable: 0,
+    AccountsPayable: 310
   },
   {
     name: 'PMJ Developments',
-    BankAccounts: 530000,
-    Income: 510000,
-    GrossProfit: 190000,
-    NetProfit: 88000,
-    ATOIntegratedAccount: 52000,
-    GST: 80000,
-    AccountsReceivable: 95000,
-    AccountsPayable: 87000
+    BankAccounts: 4354.91,
+    Income: NaN,
+    GrossProfit: NaN,
+    NetProfit: 4690.07,
+    ATOIntegratedAccount: 0,
+    GST: 0,
+    AccountsReceivable: 0,
+    AccountsPayable: 0
   },
   {
     name: 'LU 88 Investments',
-    BankAccounts: 490000,
-    Income: 480000,
-    GrossProfit: 195000,
-    NetProfit: 92000,
-    ATOIntegratedAccount: 87000,
-    GST: 56000,
-    AccountsReceivable: 98000,
-    AccountsPayable: 93000
+    BankAccounts: 424907.49,
+    Income: 2900000,
+    GrossProfit: 800817.47,
+    NetProfit: 454637.53,
+    ATOIntegratedAccount: 0,
+    GST: 379664.68,
+    AccountsReceivable: 0,
+    AccountsPayable: 0
   }
 ];
 
